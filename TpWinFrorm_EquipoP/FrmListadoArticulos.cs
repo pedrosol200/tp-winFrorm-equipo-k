@@ -93,6 +93,32 @@ namespace TpWinFrorm_EquipoP
             }
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if(dgvArticulos.CurrentRow.DataBoundItem != null)
+            {
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
 
+                DialogResult respuesta = MessageBox.Show("¿Estás seguro de que querés eliminar el artículo " + seleccionado.Nombre + "?", "Eliminar Artículo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(respuesta == DialogResult.Yes)
+                {
+                    ArticuloNegocio negocio = new ArticuloNegocio();
+                    try
+                    {
+                        negocio.eliminar(seleccionado.Id);
+                        MessageBox.Show("Articulo eliminado correctamente.");
+                        cargarArticulos();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un articulo de la lista.");
+            }
+        }
     }
 }

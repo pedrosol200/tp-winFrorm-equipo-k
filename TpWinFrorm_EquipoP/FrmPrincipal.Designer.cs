@@ -69,7 +69,7 @@
             // 
             this.btSalir.Location = new System.Drawing.Point(120, 159);
             this.btSalir.Name = "btSalir";
-            this.btSalir.Size = new System.Drawing.Size(178, 75);
+            this.btSalir.Size = new System.Drawing.Size(178, 57);
             this.btSalir.TabIndex = 3;
             this.btSalir.Text = "Salir";
             this.btSalir.UseVisualStyleBackColor = true;
