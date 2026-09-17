@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace TpWinFrorm_EquipoP
 {
     public partial class FrmListadoArticulos : Form
     {
+        private List<Articulo> listaArticulos;
         public FrmListadoArticulos()
         {
             InitializeComponent();
@@ -50,7 +52,8 @@ namespace TpWinFrorm_EquipoP
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                dgvArticulos.DataSource = negocio.listar();
+                listaArticulos = negocio.listar();
+                dgvArticulos.DataSource = listaArticulos;
                 //dgvArticulos.Columns["Imagenes"].Visible = false;
 
                 pbImagen.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -119,6 +122,26 @@ namespace TpWinFrorm_EquipoP
             {
                 MessageBox.Show("Por favor, seleccione un articulo de la lista.");
             }
+        }
+
+  
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (listaArticulos == null) return;
+            List<Articulo> listaFiltrada;
+            string filtro = txtBuscar.Text;
+
+            if (filtro != "")
+            {
+                listaFiltrada = listaArticulos.FindAll(x => x.Nombre.ToLower().Contains(filtro.ToLower()) || x.Codigo.ToLower().Contains(filtro.ToLower()));
+            }
+            else
+            {
+                listaFiltrada = listaArticulos;
+            }
+
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
         }
     }
 }
