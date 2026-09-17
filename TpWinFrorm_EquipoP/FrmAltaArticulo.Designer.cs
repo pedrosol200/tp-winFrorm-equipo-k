@@ -83,6 +83,7 @@
             this.txtUrlImagen.Name = "txtUrlImagen";
             this.txtUrlImagen.Size = new System.Drawing.Size(178, 22);
             this.txtUrlImagen.TabIndex = 4;
+            this.txtUrlImagen.Leave += new System.EventHandler(this.txtUrlImagen_Leave);
             // 
             // label1
             // 
@@ -152,6 +153,7 @@
             this.pbImagen.Location = new System.Drawing.Point(270, 224);
             this.pbImagen.Name = "pbImagen";
             this.pbImagen.Size = new System.Drawing.Size(256, 158);
+            this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImagen.TabIndex = 12;
             this.pbImagen.TabStop = false;
             // 
@@ -190,6 +192,7 @@
             this.btnAceptar.TabIndex = 16;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -199,6 +202,7 @@
             this.btnCancelar.TabIndex = 17;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FrmAltaArticulo
             // 
@@ -224,7 +228,9 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtCodigo);
             this.Name = "FrmAltaArticulo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AltaArticulo";
+            this.Load += new System.EventHandler(this.FrmAltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

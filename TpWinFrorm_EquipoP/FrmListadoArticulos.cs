@@ -143,5 +143,13 @@ namespace TpWinFrorm_EquipoP
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltrada;
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            FrmAltaArticulo ventana = new FrmAltaArticulo();
+            ventana.ShowDialog();
+
+            cargarArticulos();
+        }
     }
 }
