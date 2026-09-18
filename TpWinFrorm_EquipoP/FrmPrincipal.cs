@@ -30,7 +30,8 @@ namespace TpWinFrorm_EquipoP
 
         private void btMarcas_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Próximamente: Gestion de Marcas");
+            FrmListadoMarcas ventana = new FrmListadoMarcas();
+            ventana.ShowDialog();
         }
 
         private void btCategorias_Click(object sender, EventArgs e)

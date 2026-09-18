@@ -47,8 +47,15 @@ namespace TpWinFrorm_EquipoP
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
                     txtPrecio.Text = articulo.Precio.ToString();
-                    cbMarca.SelectedValue = articulo.Marca.Id;
-                    cbCategoria.SelectedValue = articulo.Categoria.Id;
+
+                    if (articulo.Marca != null)
+                    {
+                        cbMarca.SelectedValue = articulo.Marca.Id;
+                    }
+                    if (articulo.Categoria != null)
+                    {
+                        cbCategoria.SelectedValue = articulo.Categoria.Id;
+                    }
 
                     if (articulo.Imagenes.Count > 0)
                     {

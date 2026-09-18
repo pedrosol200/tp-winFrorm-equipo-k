@@ -52,11 +52,23 @@
     <Compile Include="FrmAltaArticulo.Designer.cs">
       <DependentUpon>FrmAltaArticulo.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAltaMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAltaMarcas.Designer.cs">
+      <DependentUpon>FrmAltaMarcas.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmListadoArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmListadoArticulos.Designer.cs">
       <DependentUpon>FrmListadoArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListadoMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListadoMarcas.Designer.cs">
+      <DependentUpon>FrmListadoMarcas.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
@@ -69,8 +81,14 @@
     <EmbeddedResource Include="FrmAltaArticulo.resx">
       <DependentUpon>FrmAltaArticulo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmAltaMarcas.resx">
+      <DependentUpon>FrmAltaMarcas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmListadoArticulos.resx">
       <DependentUpon>FrmListadoArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmListadoMarcas.resx">
+      <DependentUpon>FrmListadoMarcas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
