@@ -14,9 +14,16 @@ namespace TpWinFrorm_EquipoP
 {
     public partial class FrmAltaArticulo : Form
     {
+        private Articulo articulo = null;
         public FrmAltaArticulo()
         {
             InitializeComponent();
+        }
+        public FrmAltaArticulo(Articulo articulo)
+        {
+            InitializeComponent();
+            this.articulo = articulo;
+            this.Text = "Modificar Artículo";
         }
 
         private void FrmAltaArticulo_Load(object sender, EventArgs e)
@@ -33,6 +40,22 @@ namespace TpWinFrorm_EquipoP
                 cbCategoria.DataSource = categoriaNegocio.listar();
                 cbCategoria.DisplayMember = "Descripcion";
                 cbCategoria.ValueMember = "Id";
+
+                if(articulo != null)
+                {
+                    txtCodigo.Text = articulo.Codigo;
+                    txtNombre.Text = articulo.Nombre;
+                    txtDescripcion.Text = articulo.Descripcion;
+                    txtPrecio.Text = articulo.Precio.ToString();
+                    cbMarca.SelectedValue = articulo.Marca.Id;
+                    cbCategoria.SelectedValue = articulo.Categoria.Id;
+
+                    if (articulo.Imagenes.Count > 0)
+                    {
+                        txtUrlImagen.Text = articulo.Imagenes[0].ImagenUrl;
+                        cargarImagen(articulo.Imagenes[0].ImagenUrl);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -42,31 +65,47 @@ namespace TpWinFrorm_EquipoP
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo nuevo = new Articulo();
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             try
             {
-                nuevo.Codigo = txtCodigo.Text;
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Precio = decimal.Parse(txtPrecio.Text);
-                nuevo.Marca = (Marca)cbMarca.SelectedItem;
-                nuevo.Categoria = (Categoria)cbCategoria.SelectedItem;
+                if (articulo == null)
+                    articulo = new Articulo();
+
+                articulo.Codigo = txtCodigo.Text;
+                articulo.Nombre = txtNombre.Text;
+                articulo.Descripcion = txtDescripcion.Text;
+                articulo.Precio = decimal.Parse(txtPrecio.Text);
+                articulo.Marca = (Marca)cbMarca.SelectedItem;
+                articulo.Categoria = (Categoria)cbCategoria.SelectedItem;
+
                 if (txtUrlImagen.Text != "")
                 {
                     Imagen img = new Imagen();
                     img.ImagenUrl = txtUrlImagen.Text;
-                    nuevo.Imagenes.Add(img);
+
+                    if (articulo.Id == 0)
+                    {
+                        articulo.Imagenes.Add(img);
+                    }
                 }
 
-                negocio.agregar(nuevo);
-                MessageBox.Show("Artículo agregado correctamente.");
+                if (articulo.Id == 0)
+                {
+                    negocio.agregar(articulo);
+                    MessageBox.Show("Artículo agregado correctamente");
+                }
+                else
+                {
+                    negocio.modificar(articulo);
+                    MessageBox.Show("Artículo modificado correctamente.");
+                }
+
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
