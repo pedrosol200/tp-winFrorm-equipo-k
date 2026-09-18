@@ -57,7 +57,20 @@ namespace TpWinFrorm_EquipoP
             if (dgvMarcas.CurrentRow != null)
             {
                 Marca seleccionada = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
-                DialogResult respuesta = MessageBox.Show("¿Estás seguro de que querés eliminar la marca " + seleccionada.Descripcion + "?", "Eliminar Marca", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+                List<Articulo> articulos = articuloNegocio.listar();
+                int cantidad = articulos.Count(a => a.Marca != null && a.Marca.Id == seleccionada.Id);
+
+                string mensaje = "¿Estás seguro de que querés eliminar la marca " + seleccionada.Descripcion + "?";
+                if (cantidad > 0)
+                {
+                    mensaje += "\n\n⚠️ Atención: Hay " + cantidad + " artículo(s) que usan esta marca. " +
+                               "Si la eliminás, esos artículos van a quedar SIN marca.";
+                }
+
+                DialogResult respuesta = MessageBox.Show(mensaje, "Eliminar Marca", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
                 if (respuesta == DialogResult.Yes)
                 {
                     MarcaNegocio negocio = new MarcaNegocio();
@@ -69,17 +82,13 @@ namespace TpWinFrorm_EquipoP
                     }
                     catch (Exception ex)
                     {
-
-                        MessageBox.Show("No se puede eliminar la marca porque tiene artículos asociados. " +
-                    "Primero cambiá la marca de esos artículos o eliminalos.");
+                        MessageBox.Show(ex.ToString());
                     }
-
                 }
-
             }
             else
             {
-                MessageBox.Show("Por favor, seleccioná una marca.");
+                MessageBox.Show("Por favor, seleccione una marca.");
             }
         }
 

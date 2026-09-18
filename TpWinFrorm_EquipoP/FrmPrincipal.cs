@@ -36,7 +36,8 @@ namespace TpWinFrorm_EquipoP
 
         private void btCategorias_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Próximamente: Gestion de Categorias");
+            FrmListadoCategoria ventana = new FrmListadoCategoria();
+            ventana.ShowDialog();
         }
     }
 }

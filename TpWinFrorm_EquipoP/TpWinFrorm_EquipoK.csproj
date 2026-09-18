@@ -52,6 +52,12 @@
     <Compile Include="FrmAltaArticulo.Designer.cs">
       <DependentUpon>FrmAltaArticulo.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAltaCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAltaCategoria.Designer.cs">
+      <DependentUpon>FrmAltaCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAltaMarcas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,12 @@
     </Compile>
     <Compile Include="FrmListadoArticulos.Designer.cs">
       <DependentUpon>FrmListadoArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListadoCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListadoCategoria.Designer.cs">
+      <DependentUpon>FrmListadoCategoria.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmListadoMarcas.cs">
       <SubType>Form</SubType>
@@ -81,11 +93,17 @@
     <EmbeddedResource Include="FrmAltaArticulo.resx">
       <DependentUpon>FrmAltaArticulo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmAltaCategoria.resx">
+      <DependentUpon>FrmAltaCategoria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmAltaMarcas.resx">
       <DependentUpon>FrmAltaMarcas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmListadoArticulos.resx">
       <DependentUpon>FrmListadoArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmListadoCategoria.resx">
+      <DependentUpon>FrmListadoCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmListadoMarcas.resx">
       <DependentUpon>FrmListadoMarcas.cs</DependentUpon>
