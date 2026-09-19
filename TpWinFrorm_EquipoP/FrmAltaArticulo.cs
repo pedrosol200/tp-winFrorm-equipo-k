@@ -15,6 +15,8 @@ namespace TpWinFrorm_EquipoP
     public partial class FrmAltaArticulo : Form
     {
         private Articulo articulo = null;
+        private List<Imagen> imagenes = new List<Imagen>();
+        private int indice = 0;
         public FrmAltaArticulo()
         {
             InitializeComponent();
@@ -28,6 +30,15 @@ namespace TpWinFrorm_EquipoP
 
         private void FrmAltaArticulo_Load(object sender, EventArgs e)
         {
+            if (articulo == null || articulo.Id == 0)
+            {
+                btnAgregarImagen.Visible = false;
+                btnEliminarImagen.Visible = false;
+                btnSiguiente.Visible = false;
+                btnAtras.Visible = false;
+                lblContador.Visible = false;
+            }
+
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
 
@@ -57,16 +68,29 @@ namespace TpWinFrorm_EquipoP
                         cbCategoria.SelectedValue = articulo.Categoria.Id;
                     }
 
-                    if (articulo.Imagenes.Count > 0)
-                    {
-                        txtUrlImagen.Text = articulo.Imagenes[0].ImagenUrl;
-                        cargarImagen(articulo.Imagenes[0].ImagenUrl);
-                    }
+                    ArticuloNegocio negocio = new ArticuloNegocio();
+                    imagenes = negocio.listarImagenes(articulo.Id);
+                    mostrarImagenActual();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+        private void mostrarImagenActual()
+        {
+            if (imagenes.Count > 0)
+            {
+                cargarImagen(imagenes[indice].ImagenUrl);
+                txtUrlImagen.Text = imagenes[indice].ImagenUrl;
+                lblContador.Text = (indice + 1) + " / " + imagenes.Count;
+            }
+            else
+            {
+                cargarImagen("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=");
+                txtUrlImagen.Text = "";
+                lblContador.Text = "0 / 0";
             }
         }
 
@@ -112,7 +136,7 @@ namespace TpWinFrorm_EquipoP
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -137,6 +161,60 @@ namespace TpWinFrorm_EquipoP
             catch (Exception ex)
             {
                 pbImagen.Load("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=");
+            }
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+
+            if (indice > 0)
+            {
+                indice--;
+                mostrarImagenActual();
+            }
+
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            if (indice < imagenes.Count - 1)
+            {
+                indice++;
+                mostrarImagenActual();
+            }
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            if (articulo == null || articulo.Id == 0)
+            {
+                MessageBox.Show("Primero guarde el artículo antes de agregar imagenes.");
+                return;
+            }
+            if (txtUrlImagen.Text == "")
+            {
+                MessageBox.Show("Por favor, escriba una URL antes de agregar.");
+                return;
+            }
+            try
+            {
+                pbImagen.Load(txtUrlImagen.Text);
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                negocio.agregarImagen(articulo.Id, txtUrlImagen.Text);
+
+                Imagen nueva = new Imagen();
+                nueva.IdArticulo = articulo.Id;
+                nueva.ImagenUrl = txtUrlImagen.Text;
+                imagenes.Add(nueva);
+
+                indice = imagenes.Count - 1;
+                mostrarImagenActual();
+
+                MessageBox.Show("Imagen agregada correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("La URL parece no ser valida, revise antes de volver a cargar...");
             }
         }
     }
