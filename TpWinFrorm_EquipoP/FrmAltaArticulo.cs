@@ -96,6 +96,30 @@ namespace TpWinFrorm_EquipoP
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text))
+            {
+                MessageBox.Show("Por favor, ingrese un codigo para el articulo.", "Campo vacio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                MessageBox.Show("Por favor, ingrese un nombre para el articulo.", "Campo vacio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                MessageBox.Show("Por favor, ingrese una descripcion para el articulo.", "Campo vacio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            decimal precio;
+            if (!decimal.TryParse(txtPrecio.Text, out precio))
+            {
+                MessageBox.Show("Por favor, ingrese un precio valido (solo numeros).", "Precio invalido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             try
