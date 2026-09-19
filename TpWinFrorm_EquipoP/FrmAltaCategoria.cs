@@ -35,6 +35,12 @@ namespace TpWinFrorm_EquipoP
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                MessageBox.Show("Por favor, ingrese un Nombre para la categoria.", "Campo vacio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             CategoriaNegocio negocio = new CategoriaNegocio();
 
             try

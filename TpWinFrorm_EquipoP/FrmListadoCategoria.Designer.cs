@@ -39,11 +39,11 @@
             // dgvCategorias
             // 
             this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCategorias.Location = new System.Drawing.Point(28, 44);
+            this.dgvCategorias.Location = new System.Drawing.Point(76, 44);
             this.dgvCategorias.Name = "dgvCategorias";
             this.dgvCategorias.RowHeadersWidth = 51;
             this.dgvCategorias.RowTemplate.Height = 24;
-            this.dgvCategorias.Size = new System.Drawing.Size(464, 272);
+            this.dgvCategorias.Size = new System.Drawing.Size(370, 272);
             this.dgvCategorias.TabIndex = 0;
             // 
             // btnAgregar

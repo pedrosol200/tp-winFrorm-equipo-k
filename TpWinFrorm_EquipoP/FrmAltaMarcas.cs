@@ -37,6 +37,11 @@ namespace TpWinFrorm_EquipoP
 
         private void btAceptar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                MessageBox.Show("Por favor, ingrese un Nombre para la marca.", "Campo vacio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             MarcaNegocio negocio = new MarcaNegocio();
 
             try

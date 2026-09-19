@@ -39,11 +39,11 @@
             // dgvMarcas
             // 
             this.dgvMarcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMarcas.Location = new System.Drawing.Point(12, 12);
+            this.dgvMarcas.Location = new System.Drawing.Point(85, 22);
             this.dgvMarcas.Name = "dgvMarcas";
             this.dgvMarcas.RowHeadersWidth = 51;
             this.dgvMarcas.RowTemplate.Height = 24;
-            this.dgvMarcas.Size = new System.Drawing.Size(452, 288);
+            this.dgvMarcas.Size = new System.Drawing.Size(349, 288);
             this.dgvMarcas.TabIndex = 0;
             // 
             // btAgregar
