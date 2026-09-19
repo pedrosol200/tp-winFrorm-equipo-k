@@ -183,6 +183,27 @@ namespace TpWinFrorm_EquipoP
         }
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
+            if (listaArticulos == null) return;
+
+            List<Articulo> listaFiltrada = listaArticulos;
+            if (cboMarca.SelectedItem != null)
+            {
+                Marca marcaSeleccionada = (Marca)cboMarca.SelectedItem;
+                listaFiltrada = listaFiltrada.FindAll(x => x.Marca != null && x.Marca.Id == marcaSeleccionada.Id);
+            }
+            if (cboCategoria.SelectedItem != null)
+            {
+                Categoria categoriaSeleccionada = (Categoria)cboCategoria.SelectedItem;
+                listaFiltrada = listaFiltrada.FindAll(x => x.Categoria != null && x.Categoria.Id == categoriaSeleccionada.Id);
+            }
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
+        }
+
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaArticulos;
 
         }
     }
