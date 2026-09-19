@@ -171,5 +171,23 @@ namespace TpWinFrorm_EquipoP
                 MessageBox.Show("Por favor, seleccioná un artículo.");
             }
         }
+
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            if(dgvArticulos.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                seleccionado.Imagenes = negocio.listarImagenes(seleccionado.Id);
+                FrmDetalleArticulo ventana = new FrmDetalleArticulo(seleccionado);
+                ventana.ShowDialog();
+                cargarArticulos();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccioná un artículo.");
+            }
+        }
     }
 }

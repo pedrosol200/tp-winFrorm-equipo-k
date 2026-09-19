@@ -164,6 +164,7 @@
             this.btnDetalle.TabIndex = 12;
             this.btnDetalle.Text = "Ver Detalle";
             this.btnDetalle.UseVisualStyleBackColor = true;
+            this.btnDetalle.Click += new System.EventHandler(this.btnDetalle_Click);
             // 
             // FrmListadoArticulos
             // 
