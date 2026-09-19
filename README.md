@@ -1,1 +1,1 @@
-# TpWinFrorm_Equipo-K
+# TpWinForm_Equipo-K
