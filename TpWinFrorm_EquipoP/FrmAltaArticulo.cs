@@ -217,6 +217,49 @@ namespace TpWinFrorm_EquipoP
                 MessageBox.Show("La URL parece no ser valida, revise antes de volver a cargar...");
             }
         }
+
+        private void btnEliminarImagen_Click(object sender, EventArgs e)
+        {
+            if (imagenes.Count == 0)
+            {
+                MessageBox.Show("No hay imagenes para eliminar.");
+                return;
+            }
+            DialogResult respuesta = MessageBox.Show("Esta seguro de Eliiminar la Imagen?", "Eliminar Imagen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if(respuesta == DialogResult.Yes)
+            {
+                try
+                {
+                    ArticuloNegocio negocio = new ArticuloNegocio();
+                    negocio.eliminarImagen(imagenes[indice].Id);
+
+                    imagenes.RemoveAt(indice);
+
+                    if(indice >= imagenes.Count)
+                    {
+                        indice = imagenes.Count - 1;
+                    }
+                    if (imagenes.Count == 0)
+                    {
+                        indice = 0;
+                        cargarImagen("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=");
+                        txtUrlImagen.Text = "";
+                        lblContador.Text = "0 / 0";
+                    }
+                    else
+                    {
+                        mostrarImagenActual();
+                    }
+                    MessageBox.Show("Imagen eliminada correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+
+        }
     }
     
 }

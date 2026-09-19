@@ -90,6 +90,7 @@
             this.btnFiltrar.TabIndex = 4;
             this.btnFiltrar.Text = "Filtrar Por:";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // label1
             // 
@@ -135,6 +136,7 @@
             this.pbImagen.Size = new System.Drawing.Size(237, 198);
             this.pbImagen.TabIndex = 9;
             this.pbImagen.TabStop = false;
+            this.pbImagen.WaitOnLoad = true;
             // 
             // btnModificar
             // 

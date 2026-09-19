@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Dominio;
+using System.Linq.Expressions;
 
 namespace Negocio
 {
@@ -196,6 +197,25 @@ namespace Negocio
                 datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)");
                 datos.setearParametros("@IdArticulo", idArticulo);
                 datos.setearParametros("@ImagenUrl", url);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void eliminarImagen(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("DELETE FROM IMAGENES WHERE Id = @Id");
+                datos.setearParametros("@Id", id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

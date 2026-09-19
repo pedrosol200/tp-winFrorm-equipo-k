@@ -64,7 +64,6 @@ namespace TpWinFrorm_EquipoP
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvArticulos.CurrentRow != null)
@@ -83,7 +82,6 @@ namespace TpWinFrorm_EquipoP
                 }
             }
         }
-
         private void cargarImagen(string imagen)
         {
             try
@@ -95,7 +93,6 @@ namespace TpWinFrorm_EquipoP
                 pbImagen.Load("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=");
             }
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if(dgvArticulos.CurrentRow.DataBoundItem != null)
@@ -123,8 +120,6 @@ namespace TpWinFrorm_EquipoP
                 MessageBox.Show("Por favor, seleccione un articulo de la lista.");
             }
         }
-
-  
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (listaArticulos == null) return;
@@ -143,7 +138,6 @@ namespace TpWinFrorm_EquipoP
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltrada;
         }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             FrmAltaArticulo ventana = new FrmAltaArticulo();
@@ -151,7 +145,6 @@ namespace TpWinFrorm_EquipoP
 
             cargarArticulos();
         }
-
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if(dgvArticulos.CurrentRow != null)
@@ -171,7 +164,6 @@ namespace TpWinFrorm_EquipoP
                 MessageBox.Show("Por favor, seleccioná un artículo.");
             }
         }
-
         private void btnDetalle_Click(object sender, EventArgs e)
         {
             if(dgvArticulos.CurrentRow != null)
@@ -188,6 +180,10 @@ namespace TpWinFrorm_EquipoP
             {
                 MessageBox.Show("Por favor, seleccioná un artículo.");
             }
+        }
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

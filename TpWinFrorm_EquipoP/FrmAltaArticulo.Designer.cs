@@ -228,6 +228,7 @@
             this.btnEliminarImagen.TabIndex = 19;
             this.btnEliminarImagen.Text = "Eliminar Imagen";
             this.btnEliminarImagen.UseVisualStyleBackColor = true;
+            this.btnEliminarImagen.Click += new System.EventHandler(this.btnEliminarImagen_Click);
             // 
             // btnAtras
             // 
